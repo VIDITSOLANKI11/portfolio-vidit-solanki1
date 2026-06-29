@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vidit Solanki – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Lora:ital,wght@0,400;0,600;1,400&amp;display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1a2e;
+    --ink-mid: #16213e;
+    --violet: #6c3fc5;
+    --violet-light: #ede9fb;
+    --violet-mid: #a78bfa;
+    --gold: #d4a017;
+    --gold-light: #fdf3d0;
+    --text: #1a1a2e;
+    --text-sub: #4a4a6a;
+    --text-muted: #8888aa;
+    --bg: #f7f7fc;
+    --card: #ffffff;
+    --border: #e4e4f0;
+    --border-strong: #c8c8e0;
+    --mono: 'JetBrains Mono', monospace;
+    --sans: 'Inter', sans-serif;
+    --serif: 'Lora', Georgia, serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(247,247,252,0.93);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .nav-brand em { font-style: italic; color: var(--violet); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--text-sub);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--violet); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    padding: 0 clamp(1.5rem, 8vw, 8rem);
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  /* math symbols ambient bg */
+  .hero-symbols {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    opacity: 0.06;
+  }
+  .hero-symbols span {
+    position: absolute;
+    font-family: var(--serif);
+    color: #fff;
+    user-select: none;
+  }
+  .hero-inner {
+    max-width: 860px;
+    position: relative;
+    z-index: 1;
+    padding-top: 4rem;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.75rem;
+  }
+  .hero-eyebrow-line { width: 32px; height: 1px; background: var(--violet-mid); }
+  .hero-eyebrow-text {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--violet-mid);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6.5vw, 5.5rem);
+    font-weight: 600;
+    color: #ffffff;
+    line-height: 1.06;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--violet-mid);
+  }
+  .hero-tagline {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.01em;
+  }
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.58);
+    max-width: 500px;
+    line-height: 1.85;
+    margin-bottom: 2.5rem;
+  }
+  .hero-goal {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(108,63,197,0.18);
+    border: 1px solid rgba(108,63,197,0.45);
+    border-radius: 8px;
+    padding: 10px 18px;
+    margin-bottom: 2.5rem;
+    font-size: 13px;
+    color: var(--violet-mid);
+    font-weight: 500;
+  }
+  .hero-goal-icon { font-size: 16px; }
+  .hero-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 2.5rem;
+  }
+  .hero-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.13);
+    padding: 5px 12px;
+    border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--violet);
+    color: #fff;
+    text-decoration: none;
+    padding: 11px 24px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: #5a33a8; transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    padding: 11px 24px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.22);
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.55); color: #fff; transform: translateY(-1px); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+    padding: 0 clamp(1.5rem, 8vw, 8rem);
+  }
+  .stats-inner {
+    max-width: 860px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+  .stat-item {
+    padding: 1.5rem 1rem;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-num sup { font-size: 0.7em; vertical-align: super; }
+  .stat-label {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem clamp(1.5rem, 8vw, 8rem); }
+  .section-inner { max-width: 860px; }
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    color: var(--violet);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.4rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* ABOUT */
+  #about { background: var(--card); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--text-sub);
+    margin-bottom: 1rem;
+    line-height: 1.85;
+  }
+  .about-text blockquote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--violet);
+    border-left: 3px solid var(--violet);
+    padding: 0.5rem 0 0.5rem 1rem;
+    margin: 1.25rem 0;
+    line-height: 1.6;
+  }
+  .about-meta { display: flex; flex-direction: column; gap: 1rem; }
+  .meta-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+  }
+  .meta-card-label {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .meta-card-value {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+  .meta-card-sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* RESEARCH INTERESTS */
+  #research { background: var(--bg); }
+  .research-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .research-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .research-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--violet);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .research-card:hover { border-color: var(--violet); transform: translateY(-2px); }
+  .research-card:hover::before { opacity: 1; }
+  .research-card-sym {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    color: var(--violet);
+    margin-bottom: 0.75rem;
+    display: block;
+  }
+  .research-card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .research-card-desc {
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.7;
+  }
+
+  /* SKILLS */
+  #skills { background: var(--card); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover { border-color: var(--violet); transform: translateY(-2px); }
+  .skill-card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--violet);
+    background: var(--violet-light);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+  .skill-tag-gold {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    color: #7a5500;
+    background: var(--gold-light);
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--bg); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: var(--violet); transform: translateY(-2px); }
+  .project-num {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .project-title {
+    font-family: var(--serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .project-stack {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--violet);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.04em;
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--text-sub);
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+  .project-date {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-family: var(--mono);
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+    margin-top: auto;
+  }
+
+  /* EDUCATION & GATE */
+  #education { background: var(--card); }
+  .timeline { display: flex; flex-direction: column; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 110px 1px 1fr;
+    gap: 0 1.5rem;
+    padding-bottom: 2.5rem;
+  }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-date {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    padding-top: 4px;
+    text-align: right;
+    letter-spacing: 0.03em;
+  }
+  .timeline-line {
+    position: relative;
+    background: var(--border);
+  }
+  .timeline-dot {
+    position: absolute;
+    top: 6px; left: 50%;
+    transform: translateX(-50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--violet);
+    border: 2px solid var(--card);
+    box-shadow: 0 0 0 2px var(--violet);
+  }
+  .timeline-content { padding-top: 2px; }
+  .timeline-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .timeline-sub { font-size: 13px; color: var(--text-sub); margin-bottom: 4px; }
+  .timeline-detail { font-size: 12.5px; color: var(--text-muted); }
+  .score-badge {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    color: #5a33a8;
+    background: var(--violet-light);
+    padding: 2px 10px;
+    border-radius: 100px;
+    margin-left: 8px;
+  }
+
+  /* GATE BOX */
+  .gate-box {
+    margin-top: 2.5rem;
+    background: linear-gradient(135deg, #f3f0fc 0%, #ede9fb 100%);
+    border: 1px solid #c4b4f0;
+    border-radius: 14px;
+    padding: 1.75rem 2rem;
+  }
+  .gate-box-title {
+    font-family: var(--serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--violet);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .gate-rows { display: flex; flex-direction: column; gap: 8px; }
+  .gate-row {
+    display: flex;
+    gap: 1rem;
+    font-size: 13px;
+  }
+  .gate-row-label {
+    font-weight: 600;
+    color: var(--ink);
+    min-width: 140px;
+    flex-shrink: 0;
+  }
+  .gate-row-val { color: var(--text-sub); }
+
+  /* CERTS */
+  .cert-list { display: flex; flex-direction: column; gap: 10px; margin-top: 2rem; }
+  .cert-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem 1.25rem;
+    font-size: 13.5px;
+    color: var(--text-sub);
+  }
+  .cert-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--violet);
+    flex-shrink: 0;
+  }
+  .cert-year {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--text-muted);
+    margin-left: auto;
+    letter-spacing: 0.04em;
+  }
+
+  /* ACHIEVEMENTS */
+  #achievements { background: var(--bg); }
+  .achieve-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .achieve-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    transition: border-color 0.2s;
+  }
+  .achieve-card:hover { border-color: var(--violet); }
+  .achieve-sym {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    color: var(--violet);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .achieve-text strong {
+    display: block;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .achieve-text span { font-size: 12px; color: var(--text-muted); }
+
+  /* CONTACT */
+  #contact {
+    background: var(--ink);
+    text-align: center;
+  }
+  #contact .section-label { color: var(--violet-mid); }
+  #contact .section-title { color: #ffffff; font-family: var(--serif); }
+  .contact-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.45);
+    max-width: 400px;
+    margin: -1.5rem auto 2rem;
+    line-height: 1.8;
+  }
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(108,63,197,0.18);
+    border: 1px solid rgba(108,63,197,0.45);
+    color: var(--violet-mid);
+    text-decoration: none;
+    padding: 11px 22px;
+    border-radius: 8px;
+    font-size: 13.5px;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .contact-link:hover { background: rgba(108,63,197,0.35); color: #fff; }
+
+  /* FOOTER */
+  footer {
+    background: #0f0f1e;
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 11px;
+    color: rgba(255,255,255,0.25);
+    font-family: var(--mono);
+    letter-spacing: 0.06em;
+  }
+
+  @media (max-width: 700px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    .hero h1 { font-size: 2.6rem; }
+    .timeline-item { grid-template-columns: 70px 1px 1fr; gap: 0 1rem; }
+    .gate-row { flex-direction: column; gap: 2px; }
+  }
+
+.hero-inner{display:flex;justify-content:space-between;align-items:center;gap:50px;max-width:1200px}
+.hero-left{max-width:650px}
+.profile-photo img{width:320px;border-radius:20px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+@media(max-width:900px){.hero-inner{flex-direction:column-reverse;text-align:center}.hero-left{max-width:100%}}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+<div class="nav-brand">Vidit <em>Solanki</em></div>
+<ul class="nav-links">
+<li><a href="#about">About</a></li>
+<li><a href="#research">Research</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#education">Education</a></li>
+<li><a href="#achievements">Achievements</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+<!-- HERO -->
+<section class="hero">
+<div aria-hidden="true" class="hero-symbols">
+<span style="top:8%;left:5%;font-size:5rem;">∑</span>
+<span style="top:20%;right:8%;font-size:4rem;">∀</span>
+<span style="top:55%;left:3%;font-size:3.5rem;">∈</span>
+<span style="bottom:18%;right:5%;font-size:6rem;">∞</span>
+<span style="top:70%;left:18%;font-size:2.5rem;">⊆</span>
+<span style="top:35%;right:20%;font-size:3rem;">∂</span>
+<span style="bottom:30%;left:40%;font-size:4rem;">λ</span>
+<span style="top:12%;left:45%;font-size:2.5rem;">∩</span>
+<span style="bottom:10%;left:60%;font-size:3rem;">≡</span>
+<span style="top:80%;right:25%;font-size:2rem;">∅</span>
+</div>
+<div class="hero-inner"><div class="hero-left">
+<div class="hero-eyebrow">
+<div class="hero-eyebrow-line"></div>
+<div class="hero-eyebrow-text">B.Tech CSAIML · 2nd Year · AITR Indore</div>
+</div>
+<h1>Vidit<br/><em>Solanki.</em></h1>
+<p class="hero-tagline">Theoretical CS · Algorithms · Mathematics</p>
+<p class="hero-desc">Pursuing the mathematical foundations of computing — from complexity classes to automata, from combinatorics to formal logic. Preparing for GATE; aiming for research at ISI Kolkata.</p>
+<div class="hero-goal">
+<span class="hero-goal-icon">🎯</span>
+      M.Tech / M.S. (Research) · Indian Statistical Institute, Kolkata
+    </div>
+<div class="hero-badges">
+<span class="hero-badge">C++</span>
+<span class="hero-badge">Python</span>
+<span class="hero-badge">DSA</span>
+<span class="hero-badge">OOP</span>
+<span class="hero-badge">Discrete Math</span>
+<span class="hero-badge">Theory of Computation</span>
+<span class="hero-badge">GATE (CS/IT)</span>
+</div>
+<div class="hero-cta">
+<a class="btn-primary" href="#research">Research Interests →</a>
+<a class="btn-outline" href="#contact">Get in Touch</a>
+</div>
+</div><div class="profile-photo"><img src="Picsart_26-06-29_12-20-56-611 (1).png"/></div></div>
+</section>
+<!-- STATS BAR -->
+<div class="stats-bar">
+<div class="stats-inner">
+<div class="stat-item">
+<div class="stat-num">89.4<sup>%</sup></div>
+<div class="stat-label">Class XII</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">89</div>
+<div class="stat-label">JEE Percentile</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">150+</div>
+<div class="stat-label">Problems Solved</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">4</div>
+<div class="stat-label">Projects</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">6</div>
+<div class="stat-label">Courses</div>
+</div>
+<div class="stat-item">
+<div class="stat-num">ISI</div>
+<div class="stat-label">Research Goal</div>
+</div>
+</div>
+</div>
+<!-- ABOUT -->
+<section id="about">
+<div class="section-inner">
+<div class="section-label">01 — About</div>
+<h2 class="section-title">Who I am</h2>
+<div class="about-grid">
+<div class="about-text">
+<p>I'm a second-year B.Tech student in Computer Science with AI/ML at Acropolis Institute of Technology and Research, Indore. My deepest interests lie not in applications, but in the <em>theory</em> underneath — why algorithms work, what problems are fundamentally hard, and how mathematics structures computation itself.</p>
+<blockquote>"The question is not just how to solve a problem, but whether it can be solved at all."</blockquote>
+<p>I'm preparing rigorously for GATE (CS/IT) with the goal of pursuing a research degree at the Indian Statistical Institute, Kolkata — one of India's premier institutions for theoretical computer science and mathematics.</p>
+<p>Beyond academics, I solve 150+ algorithmic problems on Codeforces, LeetCode, and HackerRank, and independently study graduate-level texts like CLRS and Sipser.</p>
+</div>
+<div class="about-meta">
+<div class="meta-card">
+<div class="meta-card-label">Programme</div>
+<div class="meta-card-value">B.Tech — CS &amp; AI/ML (CSAIML)</div>
+<div class="meta-card-sub">AITR, Indore · Affiliated to RGPV, Bhopal · 4th Semester</div>
+</div>
+<div class="meta-card">
+<div class="meta-card-label">Research Goal</div>
+<div class="meta-card-value">M.Tech / M.S. (Research) — Theoretical CS</div>
+<div class="meta-card-sub">Indian Statistical Institute (ISI), Kolkata</div>
+</div>
+<div class="meta-card">
+<div class="meta-card-label">Location</div>
+<div class="meta-card-value">Indore, Madhya Pradesh</div>
+</div>
+<div class="meta-card">
+<div class="meta-card-label">Status</div>
+<div class="meta-card-value">Open to Research Collaborations &amp; Internships</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- RESEARCH INTERESTS -->
+<section id="research">
+<div class="section-inner">
+<div class="section-label">02 — Research Interests</div>
+<h2 class="section-title">What I think about</h2>
+<div class="research-grid">
+<div class="research-card">
+<span class="research-card-sym">𝒫 ≟ 𝒩𝒫</span>
+<div class="research-card-title">Computational Complexity Theory</div>
+<div class="research-card-desc">P vs NP, NP-completeness, circuit complexity, and communication complexity. The boundary between tractable and intractable.</div>
+</div>
+<div class="research-card">
+<span class="research-card-sym">𝒢</span>
+<div class="research-card-title">Combinatorics &amp; Graph Theory</div>
+<div class="research-card-desc">Structural, extremal, and algebraic methods. Graph traversal, connectivity, and combinatorial optimisation.</div>
+</div>
+<div class="research-card">
+<span class="research-card-sym">Σ*</span>
+<div class="research-card-title">Formal Languages &amp; Automata</div>
+<div class="research-card-desc">Regular and context-free languages, Turing computability, and the limits of what machines can decide.</div>
+</div>
+<div class="research-card">
+<span class="research-card-sym">⊢</span>
+<div class="research-card-title">Mathematical Logic</div>
+<div class="research-card-desc">Foundations of mathematics, propositional and predicate logic, and proof theory as it meets computer science.</div>
+</div>
+<div class="research-card">
+<span class="research-card-sym">𝒪(·)</span>
+<div class="research-card-title">Algorithm Design</div>
+<div class="research-card-desc">Randomised, approximation, and parameterised algorithms. Designing solutions that provably work within known bounds.</div>
+</div>
+<div class="research-card">
+<span class="research-card-sym">∑</span>
+<div class="research-card-title">Coding Theory &amp; Combinatorial Optimisation</div>
+<div class="research-card-desc">The intersection of discrete mathematics and theoretical CS — error-correcting codes, matroids, and linear programming duality.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SKILLS -->
+<section id="skills">
+<div class="section-inner">
+<div class="section-label">03 — Skills</div>
+<h2 class="section-title">What I work with</h2>
+<div class="skills-grid">
+<div class="skill-card">
+<div class="skill-card-title">Programming</div>
+<div class="skill-tags">
+<span class="skill-tag">C++ (Primary)</span>
+<span class="skill-tag">Python</span>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-title">CS Fundamentals</div>
+<div class="skill-tags">
+<span class="skill-tag">DSA</span>
+<span class="skill-tag">OOP</span>
+<span class="skill-tag">DBMS</span>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-title">Mathematics</div>
+<div class="skill-tags">
+<span class="skill-tag-gold">Discrete Math</span>
+<span class="skill-tag-gold">Linear Algebra</span>
+<span class="skill-tag-gold">Combinatorics</span>
+<span class="skill-tag-gold">Probability</span>
+<span class="skill-tag-gold">Number Theory</span>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-title">Theory (CS)</div>
+<div class="skill-tags">
+<span class="skill-tag">Automata</span>
+<span class="skill-tag">Formal Grammars</span>
+<span class="skill-tag">Turing Machines</span>
+</div>
+</div>
+<div class="skill-card">
+<div class="skill-card-title">Tools</div>
+<div class="skill-tags">
+<span class="skill-tag">VS Code</span>
+<span class="skill-tag">Git</span>
+<span class="skill-tag">GitHub</span>
+<span class="skill-tag">LaTeX</span>
+<span class="skill-tag">Linux</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PROJECTS -->
+<section id="projects">
+<div class="section-inner">
+<div class="section-label">04 — Projects</div>
+<h2 class="section-title">Things I've built</h2>
+<div class="projects-grid">
+<div class="project-card">
+<div class="project-num">Project 01 · Aug 2024</div>
+<div class="project-title">Algorithm Visualiser</div>
+<div class="project-stack">C++ · DSA · Console-based</div>
+<div class="project-desc">Step-by-step visualisation of sorting algorithms (Bubble, Merge, Quick Sort) and graph traversals (BFS, DFS). Demonstrates time complexity differences across varying input sizes.</div>
+<div class="project-date">Aug 2024</div>
+</div>
+<div class="project-card">
+<div class="project-num">Project 02 · Oct 2024</div>
+<div class="project-title">Number Theory Toolkit</div>
+<div class="project-stack">Python · Number Theory · Combinatorics</div>
+<div class="project-desc">Mathematical utility implementing GCD/LCM, modular exponentiation, Sieve of Eratosthenes, and combinatorial functions — built as a personal GATE and competitive programming tool.</div>
+<div class="project-date">Oct 2024</div>
+</div>
+<div class="project-card">
+<div class="project-num">Project 03 · Jan 2025</div>
+<div class="project-title">Mini Compiler — Lexical Analyser</div>
+<div class="project-stack">C++ · Formal Languages · Theory of Computation</div>
+<div class="project-desc">A tokeniser built to explore compiler design and reinforce understanding of finite automata and regular expressions from TOC coursework.</div>
+<div class="project-date">Jan 2025</div>
+</div>
+<div class="project-card">
+<div class="project-num">Project 04 · Feb 2025</div>
+<div class="project-title">Graph Theory Problem Library</div>
+<div class="project-stack">C++ · Graph Theory · Algorithm Design</div>
+<div class="project-desc">Adjacency list/matrix representations, BFS/DFS, cycle detection, Dijkstra, Bellman-Ford, and topological sorting — a personal reference library for competitive programming and GATE prep.</div>
+<div class="project-date">Feb 2025</div>
+</div>
+</div>
+</div>
+</section>
+<!-- EDUCATION -->
+<section id="education">
+<div class="section-inner">
+<div class="section-label">05 — Education</div>
+<h2 class="section-title">Academic background</h2>
+<div class="timeline">
+<div class="timeline-item">
+<div class="timeline-date">2023–2027</div>
+<div class="timeline-line"><div class="timeline-dot"></div></div>
+<div class="timeline-content">
+<div class="timeline-title">B.Tech — CS &amp; AI/ML (CSAIML)</div>
+<div class="timeline-sub">AITR, Indore · Affiliated to RGPV, Bhopal · 4th Semester</div>
+<div class="timeline-detail">DSA, OOP, Discrete Math, TOC, Linear Algebra, Probability, AI Fundamentals, DBMS</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2022–2023</div>
+<div class="timeline-line"><div class="timeline-dot"></div></div>
+<div class="timeline-content">
+<div class="timeline-title">Higher Secondary — Class XII <span class="score-badge">89.4%</span></div>
+<div class="timeline-sub">Physics · Chemistry · Mathematics · Computer Science</div>
+<div class="timeline-detail">Consistently strong in Mathematics — foundational for theoretical CS pursuits</div>
+</div>
+</div>
+<div class="timeline-item">
+<div class="timeline-date">2023</div>
+<div class="timeline-line"><div class="timeline-dot"></div></div>
+<div class="timeline-content">
+<div class="timeline-title">JEE Main <span class="score-badge">89 Percentile</span></div>
+<div class="timeline-sub">Top ~11% nationally · Strong in Mathematics &amp; Physics</div>
+</div>
+</div>
+</div>
+<!-- GATE BOX -->
+<div class="gate-box">
+<div class="gate-box-title">🎯   GATE Preparation &amp; Research Goal</div>
+<div class="gate-rows">
+<div class="gate-row">
+<div class="gate-row-label">Target Exam</div>
+<div class="gate-row-val">GATE — Computer Science &amp; Information Technology (CS/IT)</div>
+</div>
+<div class="gate-row">
+<div class="gate-row-label">Target Institute</div>
+<div class="gate-row-val">Indian Statistical Institute (ISI), Kolkata — M.Tech / M.S. (Research) in Theoretical CS</div>
+</div>
+<div class="gate-row">
+<div class="gate-row-label">Preparation Focus</div>
+<div class="gate-row-val">Algorithms, Theory of Computation, Discrete Mathematics, Linear Algebra, Probability</div>
+</div>
+<div class="gate-row">
+<div class="gate-row-label">Study Resources</div>
+<div class="gate-row-val">CLRS · Sipser's Theory of Computation · MIT OCW 6.006 · MIT OCW 6.042J</div>
+</div>
+</div>
+</div>
+<!-- CERTS -->
+<div class="cert-list">
+<div style="font-size:12px;font-weight:600;color:var(--ink);text-transform:uppercase;letter-spacing:0.07em;margin-bottom:4px;">Certifications &amp; Self-Study</div>
+<div class="cert-item"><div class="cert-dot"></div> Data Structures &amp; Algorithms in C++ — Udemy / Self-study <span class="cert-year">2023–24</span></div>
+<div class="cert-item"><div class="cert-dot"></div> Introduction to Algorithms (MIT OCW 6.006) — Self-study <span class="cert-year">2024</span></div>
+<div class="cert-item"><div class="cert-dot"></div> Mathematics for Computer Science (MIT OCW 6.042J) — Self-study <span class="cert-year">2024</span></div>
+<div class="cert-item"><div class="cert-dot"></div> Discrete Mathematics — NPTEL <span class="cert-year">2024</span></div>
+<div class="cert-item"><div class="cert-dot"></div> Python for Data Science — NPTEL / Coursera <span class="cert-year">2024</span></div>
+<div class="cert-item"><div class="cert-dot"></div> LaTeX for Scientific &amp; Mathematical Writing — Online <span class="cert-year">2024</span></div>
+</div>
+</div>
+</section>
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+<div class="section-inner">
+<div class="section-label">06 — Achievements</div>
+<h2 class="section-title">Activities &amp; recognition</h2>
+<div class="achieve-grid">
+<div class="achieve-card">
+<div class="achieve-sym">∑</div>
+<div class="achieve-text">
+<strong>150+ Problems Solved</strong>
+<span>Codeforces · LeetCode · HackerRank — algorithmic &amp; math focus</span>
+</div>
+</div>
+<div class="achieve-card">
+<div class="achieve-sym">🏅</div>
+<div class="achieve-text">
+<strong>HackerRank Gold Badge</strong>
+<span>30 Days of Code Challenge — Problem Solving</span>
+</div>
+</div>
+<div class="achieve-card">
+<div class="achieve-sym">📖</div>
+<div class="achieve-text">
+<strong>Graduate Textbook Study</strong>
+<span>Self-studying CLRS and Sipser alongside B.Tech curriculum</span>
+</div>
+</div>
+<div class="achieve-card">
+<div class="achieve-sym">⚡</div>
+<div class="achieve-text">
+<strong>CodeSprint Hackathon</strong>
+<span>AITR Technical Club · 2024</span>
+</div>
+</div>
+<div class="achieve-card">
+<div class="achieve-sym">🔬</div>
+<div class="achieve-text">
+<strong>GATE Study Groups</strong>
+<span>Active in CS/IT preparation groups and mock test series</span>
+</div>
+</div>
+<div class="achieve-card">
+<div class="achieve-sym">👥</div>
+<div class="achieve-text">
+<strong>CS Society Member</strong>
+<span>AITR · Maths &amp; algorithms-focused sessions</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CONTACT -->
+<section id="contact">
+<div class="section-inner" style="margin: 0 auto; max-width: 580px;">
+<div class="section-label">07 — Contact</div>
+<h2 class="section-title">Let's connect</h2>
+<p class="contact-sub">Open to research collaborations, academic discussions, and internship opportunities in theoretical CS or algorithms.</p>
+<div class="contact-links">
+<a class="contact-link" href="mailto:vidit.solanki@email.com">✉️  Email</a>
+<a class="contact-link" href="https://linkedin.com/in/viditsolanki">LinkedIn</a>
+<a class="contact-link" href="https://github.com/viditsolanki">GitHub</a>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer>∀ x · Vidit Solanki · B.Tech CSAIML · AITR Indore · 2025</footer>
+</body>
+</html>
